@@ -17,6 +17,7 @@ public class A05_Constant {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		final int MAX_NUM = 1000;
+	  // 상수를 사용할 때 final 사용
 		final double PI = 3.141592;
 		
 //		System.out.println(MAX_NUM);
@@ -41,3 +42,5 @@ public class A05_Constant {
 	}
 
 }
+
+//
