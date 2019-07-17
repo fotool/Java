@@ -1,38 +1,35 @@
 package practice;
 
+import java.util.Scanner;
+
 public class practice1 {
 
 	public static void main(String[] args) {
-		int week = 4;
-		String day;
+		int num1 ,num2;
+		String operator;
+		Scanner kbd = new Scanner(System.in);
 		
-		switch (week) {
-		case 1:
-			day = "Sunday";
+		System.out.println("숫자 1을 입력 하시오 : ");
+		num1 = kbd.nextInt();
+		System.out.println("숫자 2를 입력 하시오 : ");
+		num2 = kbd.nextInt();
+		System.out.println("연산의 종류");
+		operator = kbd.next();
+		
+		switch(operator) {
+		case "+":
+			System.out.println(num1 + "+" + num2 + "=" + (num1+num2) );
 			break;
-		case 2:
-			day = "Monday";
+		case "-":
+			System.out.println(num1 + "-" + num2 + "=" + (num1-num2));
 			break;
-		case 3:
-			day = "Tuesday";
+		case "*":
+			System.out.println(num1 + "*" + num2 + "=" + (num1*num2));
 			break;
-		case 4:
-			day = "Wednesday";
-			break;
-		case 5:
-			day = "Thursday";
-			break;
-		case 6:
-			day = "Friday";
-			break;
-		case 7:
-			day = "Saturday";
-			break;
-		default:
-			day = "Invalid day";
-			break;
+		case "/":
+			System.out.println(num1 + "/" + num2 + "=" + (num1/num2));
 		}
-		System.out.println(day);
+		
 	}
 
 }
