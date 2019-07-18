@@ -7,31 +7,32 @@ import java.util.Scanner;
 public class Practice1 {
 
 	public static void main(String[] args) {
-		int num1 ,num2;
+		// 변수선언
+		Scanner sc = new Scanner(System.in);
+		int num1, num2;
 		String operator;
-		Scanner kbd = new Scanner(System.in);
 		
-		System.out.println("숫자 1을 입력 하시오 : ");
-		num1 = kbd.nextInt();
-		System.out.println("숫자 2를 입력 하시오 : ");
-		num2 = kbd.nextInt();
-		System.out.println("연산의 종류");
-		operator = kbd.next();
+		// 키보드 입력
+		System.out.println("숫자 1을 입력하시오 : ");
+		num1 = sc.nextInt();
+		System.out.println("숫자 2를 입력하시오 : ");
+		num2 = sc.nextInt();
+		System.out.println("연산자를 입력하시오 : ");
+		operator = sc.next();
 		
+		// 출력
 		switch(operator) {
-		case "+":
-			System.out.println(num1 + "+" + num2 + "=" + (num1+num2) );
+		case ("+"):
+			System.out.println(num1 + "+" + num2 + "=" + (num1+num2));
 			break;
-		case "-":
+		case ("-"):
 			System.out.println(num1 + "-" + num2 + "=" + (num1-num2));
 			break;
-		case "*":
+		case ("*"):
 			System.out.println(num1 + "*" + num2 + "=" + (num1*num2));
 			break;
-		case "/":
+		case ("/"):
 			System.out.println(num1 + "/" + num2 + "=" + (num1/num2));
-		}
-		
-	}
-
-}
+		}// end of switch
+	}// end of main
+}// end of class

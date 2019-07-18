@@ -20,7 +20,7 @@ public class PRO07_Multiple {
 		 */
 		
 		// 필요 변수 선언
-		int dan = 1;
+		int dan = 3;
 		Scanner kbd = new Scanner(System.in);
 		
 		while (dan !=0) {
