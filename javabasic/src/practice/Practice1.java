@@ -4,7 +4,7 @@ package practice;
 
 import java.util.Scanner;
 
-public class practice1 {
+public class Practice1 {
 
 	public static void main(String[] args) {
 		int num1 ,num2;
