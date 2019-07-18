@@ -1,3 +1,5 @@
+// p.123 연습문제 1
+
 package practice;
 
 import java.util.Scanner;
