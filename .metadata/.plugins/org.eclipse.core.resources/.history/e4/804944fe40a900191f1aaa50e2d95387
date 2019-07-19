@@ -1,0 +1,14 @@
+/*
+ *  사용자가 단을 입력하면 해당 단의 구구단을 출력하는 프로그램을 작성하시오.
+ *  단, 0을 입력하면 프로그램을 종료하시오.
+ */
+package practice;
+
+public class Practice7 {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

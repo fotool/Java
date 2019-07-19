@@ -1,0 +1,18 @@
+/*
+ * 클래스의 생성자constructor
+ */
+
+package chapter5;
+
+public class A02_useClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Student st1 = new Student();
+		Student st2 = new Student("홍길동");
+		st1.study();
+		st2.study();
+
+	}
+
+}

@@ -1,0 +1,30 @@
+package chapter5;
+
+public class CarTest {
+
+	public static void main(String[] args) {
+		Car eungiCar = new Car();
+		//Car ellenCar = new Car();
+		eungiCar.showInfo();
+		
+		//eungiCar.color = "실버";
+		// eungiCar.speed=0;
+		/*
+		 * eungiCar.setSpeed(0); eungiCar.showInfo();
+		 * 
+		 * eungiCar.upSpeed(60); eungiCar.showInfo();
+		 * 
+		 * eungiCar.upSpeed(500); eungiCar.showInfo();
+		 * 
+		 * eungiCar.downSpeed(200); eungiCar.showInfo();
+		 * 
+		 * eungiCar.downSpeed(30); eungiCar.showInfo();
+		 */
+		
+		
+		// System.out.println(eungiCar); // 생성주소 확인 
+		// System.out.println(ellenCar); // 생성주소 확인
+				
+	}// end of main
+
+}// end of class CarTest

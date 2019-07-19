@@ -1,0 +1,12 @@
+package chapter5;
+
+public class Student{
+	int id;
+	String name;
+	int grade;
+	String address;
+	
+	public void study() {
+		System.out.println(name + "이 공부한다.");
+	}
+}// end of class Student

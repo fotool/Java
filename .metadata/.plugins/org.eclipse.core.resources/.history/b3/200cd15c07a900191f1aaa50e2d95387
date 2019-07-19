@@ -1,0 +1,30 @@
+/*
+ *  사용자가 단을 입력하면 해당 단의 구구단을 출력하는 프로그램을 작성하시오.
+ *  단, 0을 입력하면 프로그램을 종료하시오.
+ */
+package chapter4;
+
+import java.util.Scanner;
+
+public class PRO07_Multiple {
+
+	public static void main(String[] args) {
+		// 변수 선언
+		Scanner sc = new Scanner(System.in);
+		int dan;
+		int times;
+		
+		// 키보드 입력
+		System.out.println("단을 입력하시오 : ");
+		dan = sc.nextInt();
+		
+		for(times =1; times <=9; times++) {
+					{
+				System.out.println(dan + "*" + times + "=" + dan*times);
+			}
+			System.out.println();
+		}
+
+	}
+
+}

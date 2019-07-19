@@ -1,0 +1,25 @@
+package chapter5;
+
+public class Car {
+	// member 변수, field, 속성
+	String color;
+	int speed;
+	
+	// member method, 메서드, 함수
+	// 가속 메서드
+	public void upSpeed(int value){
+		if(speed + value > 300) speed = 300;
+		else speed = speed + value;
+	} // end of upSpeed()
+	
+	// 감속 메서드
+	public void downSpeed(int value) {
+		if(speed - value <= 0 ) speed = 0;
+		else speed = speed - value;
+	}// end of downSpeed()
+	
+	public void showInfo() {
+		System.out.println("컬러 : " + color + ", 현재 속도는" + speed);
+	}// showSpeed()
+	
+}// end of class Car

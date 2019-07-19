@@ -1,0 +1,24 @@
+// p.123 연습문제 3번
+
+package practice;
+
+public class Practice3 {
+
+	public static void main(String[] args) {
+		
+		// 변수선언
+		int dan, times;
+		
+		// 계산, 출력
+		for(dan=1; dan<=9; dan++) {
+			
+			for(times=1; times<=9; times++) {
+				if(dan < times) break;
+				System.out.println(dan + "X" + times + "=" + (dan*times));
+			}// end of inner for
+			System.out.println();
+		}// end of for
+		
+	}// end of main
+
+}// end of class

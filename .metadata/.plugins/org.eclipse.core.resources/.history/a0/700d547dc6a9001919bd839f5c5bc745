@@ -1,0 +1,26 @@
+package chapter5;
+
+public class CarTest {
+
+	public static void main(String[] args) {
+		Car eungiCar = new Car();
+		
+		eungiCar.color = "실버";
+		eungiCar.speed = 0;
+		eungiCar.showInfo();
+		
+		eungiCar.upSpeed(60);
+		eungiCar.showInfo();
+		
+		eungiCar.upSpeed(500);
+		eungiCar.showInfo();
+		
+		eungiCar.downSpeed(200);
+		eungiCar.showInfo();
+		
+		eungiCar.downSpeed(30);
+		eungiCar.showInfo();
+		
+	}// end of main
+
+}// end of class CarTest

@@ -1,0 +1,15 @@
+package practice;
+
+public class Practice3 {
+
+	public static void main(String[] args) {
+		
+		for(int dan=1; dan<=9; dan++) {
+			for(int times=1; times<=9; times++) {
+				if(dan == times) break;
+			}// end of inner for
+		}// end of for
+		
+	}// end of main
+
+}// end of class
