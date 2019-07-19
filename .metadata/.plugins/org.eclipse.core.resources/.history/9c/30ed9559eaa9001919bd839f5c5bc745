@@ -10,7 +10,7 @@ public class Student {
 	
 	// 이름과 가진 돈을 매개변수로 받는 생성자
 	public Student(String studentName, int money) {
-		this.studentID = ++serialNum;
+		this.studentID = serialNum++;
 		this.StudentName = studentName;
 		this.money = money;
 	}
@@ -35,10 +35,6 @@ public class Student {
 	public void showInfo() {
 		System.out.println(studentID);
 	                //생성자명이어야 함(Left Value)
-	}
-	
-	public static void showSerial() {
-		System.out.println(serialNum);
 	}
 	
 }//end of class Student

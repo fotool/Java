@@ -1,0 +1,10 @@
+package chapter6;
+
+public class StudentTest {
+
+	public static void main(String[] args) {
+		Student studentKim = new Student("Kim", 10000);
+		studentKim.showInfo();
+	}
+
+}

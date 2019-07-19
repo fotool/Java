@@ -37,8 +37,4 @@ public class Student {
 	                //생성자명이어야 함(Left Value)
 	}
 	
-	public static void showSerial() {
-		System.out.println(serialNum);
-	}
-	
 }//end of class Student
