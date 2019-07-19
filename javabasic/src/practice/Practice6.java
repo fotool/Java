@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class Practice6 {
 
+	
 	public static void main(String[] args) {
 		// 변수 선언
 		Scanner kbd = new Scanner(System.in);
@@ -22,7 +23,6 @@ public class Practice6 {
 		System.out.println("1.입금  2.출금  3.잔고조회  4.종료");
 		System.out.println("번호를 입력! : ");
 		num = kbd.nextInt();
-		
 		
 		switch(num){
 			case 1:
