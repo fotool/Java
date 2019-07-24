@@ -24,6 +24,7 @@ public class BookArray {
 		
 		System.arraycopy(library, 0, nlibrary, 0, 5);
 		for (int i = 0; i < nlibrary.length; i++) {
+			if(nlibrary[i] != null)nlibrary[i].showBookInfo();
 			nlibrary[i].showBookInfo();
 		}
 	}
