@@ -3,7 +3,7 @@
 package staticex;
 	
 public class Student3 {
-	static int serialNum = 1000;
+	private static int serialNum = 1000;
 	int studentID;
 	String studentName;
 	int grade;

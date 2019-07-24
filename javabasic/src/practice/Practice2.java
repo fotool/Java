@@ -2,7 +2,7 @@
 
 package practice;
 
-public class Practice2 {
+public class practice2 {
 
 	public static void main(String[] args) {
 		// 변수 선언
