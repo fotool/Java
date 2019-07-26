@@ -1,0 +1,15 @@
+http://www.tutorialspoint.com/
+https://jdm.kr/blog/69  - 스레드
+https://docs.oracle.com/javase/8/docs/api/  - class references
+https://www.pinterest.co.kr/ - pinterest
+https://www.shutterstock.com/ko/colors  - color 참조
+https://www.webfx.com/web-design/color-picker/ - color 참조
+https://fonts.google.com/ - font
+http://leaverou.github.io/prefixfree/ - js
+https://www.w3.org/Style/CSS/ - CSS
+http://guny.kr/stuff/klorem/#/p-view   - 한글 Lorem Ipsum
+
+
+
+osi 7 계층
+try, catch
