@@ -14,21 +14,22 @@ class Student{
 		return studentId + "," + studentName;
 	}
 
-	@Override
+	@Override  // equals()메서드 재정의
 	public boolean equals(Object obj) {
 		if(obj instanceof Student){
 			Student std = (Student)obj;
-			if( studentId == std.studentId)
-				return true;
-			else return false;
-		}
+			if(this.studentId == std.studentId) //재정의한 equals()
+				return true;				//메서드는 학생의
+			else return false;				//학번이 같은면
+		}									//true 반환
 		return false;
 	}
 
-	@Override
-	public int hashCode() {
-		return studentId;
-	}
+	
+	 @Override public int hashCode() { 
+		 return studentId;
+		 }
+	 
 	
 }
 
@@ -39,6 +40,11 @@ public class EqualsTest {
 		Student studentLee = new Student(100, "이상원");
 		Student studentLee2 = studentLee; // 주소복사
 		Student studentSang = new Student(100, "이상원");
+		studentLee.hashCode();
+		String str1="korea";
+		int n1 = 1;
+		str1.hashCode();
+		Intege
 		// 동일한 주소의 두 인스턴스 비교
 		if(studentLee == studentLee2)
 			System.out.println("studentLee와 studentLee2의 주소는 같습니다.");
