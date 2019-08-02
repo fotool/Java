@@ -44,7 +44,7 @@ public class EqualsTest {
 		String str1="korea";
 		int n1 = 1;
 		str1.hashCode();
-		Intege
+	
 		// 동일한 주소의 두 인스턴스 비교
 		if(studentLee == studentLee2)
 			System.out.println("studentLee와 studentLee2의 주소는 같습니다.");
