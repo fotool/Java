@@ -21,7 +21,12 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class Joinform extends JFrame {
-
+	
+	Connection conn;
+	String sql;
+	PreparedStatement pstmt;
+	ResultSet result;
+	
 	private JPanel contentPane;
 	private JTextField txtUserID;
 	private JTextField txtUserPWD;
@@ -97,33 +102,32 @@ public class Joinform extends JFrame {
 		txtAdr.setColumns(10);
 		
 		JButton btnJoin = new JButton("Join");
-		btnJoin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// DB Connection
-				Connection conn = null;
-				PreparedStatement pstmt = null;
-				ResultSet result = null;
-				String sql = null;
-				
-				String url = "jdbc:oracle:thin:@localhost:1521:xe";
-				String user = "madang";
-				String pwd = "madang";
-				
-				try {
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-				conn = DriverManager.getConnection(url, user, pwd);
-				sql = "SELECT * FROM members WHERE userid = ? AND userpwd = ?";
-				pstmt = conn.prepareStatement(sql);
-				String uid = txtUserID.getText();
-			    String upwd = txtUserPWD.getText();
-			    String pnum = txtPNum.getText();
-				String adr = txtAdr.getText();
-			    pstmt.setString(1, uid);
-			    pstmt.setString(2, upwd);
-			    pstmt.setString(3, pnum);
-			    pstmt.setString(4, adr);
-			    
-			    result = pstmt.executeQuery();
+			btnJoin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dbconnect();
+					String uid = txtUserID.getText();
+					String upwd = txtUserPWD.getText();
+					String pnum = txtPNum.getText();
+					String adr = txtAdr.getText();
+					if(!chkDuplicate(uid)) {
+						sql = "INSERT INTO members VALUES (?, ?, ?, ?)";
+					
+					try {		
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, uid);
+						pstmt.setString(2, upwd);
+						pstmt.setString(3, pnum);
+						pstmt.setString(4, adr);
+						int insert = pstmt.executeUpdate();
+						if(insert==1)JOptionPane.showMessageDialog(null, "환영합니당~!", "Join!", JOptionPane.INFORMATION_MESSAGE);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}				
+				}else {
+					JOptionPane.showMessageDialog(null, "동일한 ID의 레코드가 존재합니다.");
+				}//end of else
+				}//end of public void
+				});
 			    
 			    	// 현재 화면을 닫고....
 			    	dispose();
@@ -132,13 +136,6 @@ public class Joinform extends JFrame {
 			    	// 새로운 화면을 보이게 한다.
 			    	membInfo.setVisible(true);
 			    	
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
 		btnJoin.setBounds(208, 342, 97, 23);
 		contentPane.add(btnJoin);
 		
@@ -152,4 +149,51 @@ public class Joinform extends JFrame {
 		label.setBounds(458, 92, 134, 202);
 		contentPane.add(label);
 	}
+	void dbconnect() {
+		// 연결설정
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "madang", "madang");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("드라이버가 로드되지 않았습니다.");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("데이터베이스 연결에 문제가 있습니다.");
+			e.printStackTrace();
+		}		
+	}// end of dbconnect
+	boolean chkDuplicate(String newid) {
+		boolean exist = false;
+		dbconnect();
+		
+		sql = "SELECT * FROM members WHERE userid=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newid);
+			result = pstmt.executeQuery();
+			if(result.next()) {
+				exist = true;
+			}else exist = false;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return exist;
+	}//end of chkDuplicate()
+	void closeAll() {
+		if(pstmt != null)
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				if(conn !=null)
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	}//end of closeAll()
 }

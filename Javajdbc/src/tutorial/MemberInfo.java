@@ -14,8 +14,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import net.proteanit.sql.DbUtils;
+import javax.swing.border.TitledBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MemberInfo extends JFrame {
 	
@@ -29,6 +36,8 @@ public class MemberInfo extends JFrame {
 	private JTextField txtUserPWD;
 	private JTextField txtPNum;
 	private JTextField txtAdr;
+	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -46,7 +55,7 @@ public class MemberInfo extends JFrame {
 	public MemberInfo() {
 		setTitle("Member Information Form");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 682, 366);
+		setBounds(100, 100, 844, 422);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -131,6 +140,7 @@ public class MemberInfo extends JFrame {
 			}else {
 				JOptionPane.showMessageDialog(null, "동일한 ID의 레코드가 존재합니다.");
 			}//end of else
+				dataLoad();
 			}//end of public void
 			});
 		btnAdd.setBounds(158, 294, 97, 23);
@@ -157,6 +167,7 @@ public class MemberInfo extends JFrame {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			dataLoad();
 		}
 		});
 		btnUpdate.setBounds(284, 294, 97, 23);
@@ -226,8 +237,80 @@ public class MemberInfo extends JFrame {
 			}
 		});
 		btnReset.setFont(new Font("Vivaldi", Font.PLAIN, 25));
-		btnReset.setBounds(441, 112, 113, 48);
+		btnReset.setBounds(284, 335, 97, 38);
 		contentPane.add(btnReset);
+		
+
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// 테이블을 클릭했을 때, 행을 추출하고
+				// 추출된 행의 각 컬럼을 왼쪽에 있는 각각의 텍스트필드에 전달한다.
+				dbconnect();
+				int row = table.getSelectedRow();
+				String uid = (table.getModel().getValueAt(row, 0)).toString();
+				// uid를 이용하여 db를 검색하고 검색된 결과를 텍스트 필드에 전달
+				sql = "SELECT * FROM members WHERE userid = ?";
+				try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, uid);				
+				result = pstmt.executeQuery();				
+				while(result.next()){        //getString("컬럼명과 동일한 이름")
+					String vuserid = result.getString("userid");
+					String vuserpwd = result.getString("userpwd");
+					String vpnum = result.getString("phone_number");
+					String vadr = result.getString("address");
+					txtUserID.setText(vuserid);
+					txtUserPWD.setText(vuserpwd);
+					txtPNum.setText(vpnum);
+					txtAdr.setText(vadr);
+				}// end of while	
+				
+				}catch(SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		table.setBounds(772, 81, -434, 170);
+		contentPane.add(table);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "JPanel title", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(374, 64, 407, 194);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(6, 17, 395, 170);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 0, 395, 170);
+		panel_1.add(scrollPane);
+		
+		table_1 = new JTable();
+		scrollPane.setViewportView(table_1);
+	
+		
+		JButton btnDataLoad = new JButton("Data Load");
+		btnDataLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//테이블 데이터를 로드하는 메서드 호출
+				System.out.println("데이터로드 호출전");
+				dataLoad();
+				System.out.println("데이터로드 후");
+			}// end of actionPerformed
+		});
+		btnDataLoad.setBounds(680, 294, 97, 23);
+		contentPane.add(btnDataLoad);
+		
+		//테이블 데이터를 로드하는 메서드 호출
+		dataLoad();
+					
 	}// end of MemberInfo()
 
 	void dbconnect() {
@@ -279,4 +362,19 @@ public class MemberInfo extends JFrame {
 						e.printStackTrace();
 					}
 	}//end of closeAll()
+	
+	void dataLoad() {
+		//JTable에 테이블 데이터를 로드한다.
+		dbconnect();
+		sql = "SELECT * FROM members";
+		try {
+		pstmt = conn.prepareStatement(sql);
+		result = pstmt.executeQuery();
+		// 질의 결과를 table에 넘겨준다.
+		System.out.println("*******");
+		table_1.setModel(DbUtils.resultSetToTableModel(result));
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
 }

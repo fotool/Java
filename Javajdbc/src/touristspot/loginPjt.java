@@ -1,7 +1,19 @@
-package tutorial;
+package touristspot;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Image;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import tutorial.Joinform;
+import tutorial.MemberInfo;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -10,24 +22,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import java.awt.Font;
-import javax.swing.JTextPane;
+import javax.swing.JButton;
 
-public class LoginForm extends JFrame {
+public class loginPjt extends JFrame {
 	
 	ResultSet result;
 	
 	private JPanel contentPane;
 	private JTextField txtUserID;
-	private JTextField txtUserPwd; 
+	private JTextField txtUserPWD;
+
 	/**
 	 * Launch the application.
 	 */
@@ -35,7 +40,7 @@ public class LoginForm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginForm frame = new LoginForm();
+					loginPjt frame = new loginPjt();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +52,7 @@ public class LoginForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginForm() {
+	public loginPjt() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -55,43 +60,29 @@ public class LoginForm extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Welcome to JAVADB Class");
-		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 16));
-		lblNewLabel.setLabelFor(this);
-		lblNewLabel.setBounds(92, 10, 245, 47);
+		JLabel lblNewLabel = new JLabel("Manager Login ");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(93, 23, 225, 41);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblUserID = new JLabel("User Name");
-		lblUserID.setBounds(204, 82, 76, 15);
-		contentPane.add(lblUserID);
-		
-		JLabel lblUserPwd = new JLabel("Password");
-		lblUserPwd.setBounds(204, 121, 76, 15);
-		contentPane.add(lblUserPwd);
+		JLabel lblManagerid = new JLabel("ManagerID");
+		lblManagerid.setBounds(67, 91, 118, 15);
+		contentPane.add(lblManagerid);
 		
 		txtUserID = new JTextField();
-		txtUserID.setBounds(306, 79, 116, 21);
+		txtUserID.setBounds(202, 88, 116, 21);
 		contentPane.add(txtUserID);
 		txtUserID.setColumns(10);
 		
-		txtUserPwd = new JTextField();
-		txtUserPwd.setBounds(306, 118, 116, 21);
-		contentPane.add(txtUserPwd);
-		txtUserPwd.setColumns(10);
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(67, 144, 118, 15);
+		contentPane.add(lblPassword);
 		
-		JButton btnJoin = new JButton("Join");
-		btnJoin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-						//현재 창 닫음
-						dispose();
-						//새로운 창을 생성한 후
-						Joinform jform = new Joinform();
-						//새로운 창을 보이게 한다.
-						jform.setVisible(true);		
-			}//end of public void
-		});
-		btnJoin.setBounds(204, 183, 97, 23);
-		contentPane.add(btnJoin);
+		txtUserPWD = new JTextField();
+		txtUserPWD.setBounds(202, 141, 116, 21);
+		contentPane.add(txtUserPWD);
+		txtUserPWD.setColumns(10);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
@@ -103,16 +94,16 @@ public class LoginForm extends JFrame {
 				String sql = null;
 				
 				String url = "jdbc:oracle:thin:@localhost:1521:xe";
-				String user = "madang";
-				String pwd = "madang";
+				String user = "hr";
+				String pwd = "hr";
 				
 				try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				conn = DriverManager.getConnection(url, user, pwd);
-				sql = "SELECT * FROM members WHERE userid = ? AND userpwd = ?";
+				sql = "SELECT * FROM Manager WHERE userid = ? AND password= ?";
 				pstmt = conn.prepareStatement(sql);
 				String uid = txtUserID.getText();
-			    String upwd = txtUserPwd.getText();
+			    String upwd = txtUserPWD.getText();
 			    pstmt.setString(1, uid);
 			    pstmt.setString(2, upwd);
 			    
@@ -126,8 +117,8 @@ public class LoginForm extends JFrame {
 			    	// 새로운 화면을 생성한 후
 	
 			    	
-			    	MemberInfo membInfo = new MemberInfo();
-			    	membInfo.setVisible(true);
+			    	managerForm mform = new managerForm();
+			    	mform.setVisible(true);
 			    	
 			    	// 새로운 화면을 보이게 한다.
 			    } else {
@@ -141,13 +132,21 @@ public class LoginForm extends JFrame {
 				}
 			}
 		});
-		btnLogin.setBounds(325, 183, 97, 23);
+		btnLogin.setBounds(88, 192, 97, 23);
 		contentPane.add(btnLogin);
 		
-		JLabel label = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/login2.png")).getImage();
-		label.setIcon(new ImageIcon(img));
-		label.setBounds(24, 82, 128, 124);
-		contentPane.add(label);
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+						//현재 창 닫음
+						dispose();
+						//새로운 창을 생성한 후
+						mainPjt mPjt = new mainPjt();
+						//새로운 창을 보이게 한다.
+						mPjt.setVisible(true);		
+			}//end of public void
+		});
+		btnCancel.setBounds(217, 192, 97, 23);
+		contentPane.add(btnCancel);
 	}
 }
