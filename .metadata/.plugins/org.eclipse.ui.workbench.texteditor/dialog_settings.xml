@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="getValue"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="condition"/>
+			<item value="table"/>
+			<item value="table_1"/>
+			<item value="dbutil"/>
+			<item value="search"/>
 			<item value="getValue"/>
 			<item value="getvalue"/>
 			<item value="get.value"/>
 			<item value="Getvalue"/>
-			<item value="search"/>
 			<item value="column"/>
 			<item value="combo"/>
 			<item value="login"/>
 			<item value="main"/>
 			<item value="delete"/>
 			<item value="dbutils"/>
-			<item value="add"/>
-			<item value="uid"/>
-			<item value="\n"/>
-			<item value="ResultSet"/>
 		</list>
 		<list key="replacehistory">
 			<item value="takeOnBus"/>

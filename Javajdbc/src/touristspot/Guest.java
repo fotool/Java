@@ -90,25 +90,45 @@ public class Guest extends JFrame {
 				dbconnect();
 				String ctg= comboBox.getSelectedItem().toString();
 				sql = "SELECT * FROM Tour WHERE category = ?";
+				
 				try {										
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, ctg);
 					result = pstmt.executeQuery();
 					// 질의 결과를 table에 넘겨준다.
 					table.setModel(DbUtils.resultSetToTableModel(result));
+					
+					JLabel label = new JLabel("");
+					label.setBounds(24, 165, 159, 141);
+					contentPane.add(label);
+					if (ctg.equals("산")) {
+	                    Image img = new ImageIcon(this.getClass().getResource("/mount.jpg")).getImage();
+	                    label.setIcon(new ImageIcon(img));
+	                 } else if (ctg.equals("계곡")) {
+	                    Image img = new ImageIcon(this.getClass().getResource("/vally.png")).getImage();
+	                    label.setIcon(new ImageIcon(img));
+	                 } else if (ctg.equals("공원")) {
+	                    Image img = new ImageIcon(this.getClass().getResource("/park.jpg")).getImage();
+	                    label.setIcon(new ImageIcon(img));
+	                 } else if (ctg.equals("기타")) {
+	                    Image img = new ImageIcon(this.getClass().getResource("/etc.jpg")).getImage();
+	                    label.setIcon(new ImageIcon(img));
+	                 }
+					
+					
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
+				
 			}
 		});
 		btnSearch.setBounds(60, 325, 97, 23);
 		contentPane.add(btnSearch);
 		
-		JLabel label = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/search icon.png")).getImage();
-		label.setIcon(new ImageIcon(img));
-		label.setBounds(24, 165, 159, 141);
-		contentPane.add(label);
+		
+		
+		
+		
 		
 		
 	}//end of public Guest

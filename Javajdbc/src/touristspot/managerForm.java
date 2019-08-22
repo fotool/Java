@@ -42,7 +42,6 @@ public class managerForm extends JFrame {
 	private JTextField txtpadt;
 	private JTextField txtpch;
 	private JTextField txteld;
-	private JTable table_1;
 	private JTextField txtName;
 	private JTextField txtctg;
 	private JTable table;
@@ -146,9 +145,6 @@ public class managerForm extends JFrame {
 		scrollPane_1.setBounds(335, 90, 775, 265);
 		contentPane.add(scrollPane_1);
 		
-		table_1 = new JTable();
-		scrollPane_1.setViewportView(table_1);
-		dataLoad();
 		
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
@@ -300,7 +296,8 @@ public class managerForm extends JFrame {
 			txtpch.setText(null);
 			txteld.setText(null);
 			txtName.setText(null);
-		}
+			dataLoad();
+			}
 		});
 		
 		btnReset.setBounds(479, 408, 97, 23);
@@ -360,7 +357,8 @@ public class managerForm extends JFrame {
 				try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, ctg);				
-				result = pstmt.executeQuery();				
+				result = pstmt.executeQuery();
+				
 				while(result.next()){        //getString("컬럼명과 동일한 이름")
 					String vctg = result.getString("category");
 					String vspt = result.getString("spot");
@@ -382,7 +380,8 @@ public class managerForm extends JFrame {
 				}catch(SQLException e1) {
 					e1.printStackTrace();
 				}
-			}
+				dataLoad();
+			}// end of public void
 		});
 		table.setBounds(335, 90, 775, 265);
 		contentPane.add(table);
@@ -410,7 +409,7 @@ public class managerForm extends JFrame {
 		result = pstmt.executeQuery();
 		// 질의 결과를 table에 넘겨준다.
 		System.out.println("*******");
-		table_1.setModel(DbUtils.resultSetToTableModel(result));
+		table.setModel(DbUtils.resultSetToTableModel(result));
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
