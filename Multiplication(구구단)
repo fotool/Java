@@ -1,5 +1,3 @@
-# 구구단
-
 package yo;
 
 public class MultiplicationTable {
