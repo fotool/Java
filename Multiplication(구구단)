@@ -1,0 +1,16 @@
+package yo;
+
+public class MultiplicationTable {
+
+	public static void main(String[] args) {
+		// 출력
+		for(int a=1; a<10; a++) {
+			for(int b=1; b<10; b++) {
+				System.out.println(a + " * " + b + " = " + (a*b)+"\t");
+			}// end of for(int b=1; b<10; b++)
+		}// end of for(int a=1; a<10; a++)
+		
+    System.out.println();
+	}// end of public static void main
+	
+}// end of public class MultiplicationTable
